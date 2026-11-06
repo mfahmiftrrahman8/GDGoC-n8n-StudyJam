@@ -1,0 +1,102 @@
+{
+  "name": "My workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "P1-test",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.2,
+      "position": [
+        -144,
+        -128
+      ],
+      "id": "d32efc13-14c4-4949-bf6f-3aacefd62446",
+      "name": "Webhook",
+      "webhookId": "f9f0bdb3-e0d4-45f9-8b21-bd888d2ccf20"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fa0bcac4-8b34-4ccc-9ceb-93a1302c4355",
+              "name": "status",
+              "value": "success",
+              "type": "string"
+            },
+            {
+              "id": "057f0424-8f62-4296-b960-5aa3e3c0ffbc",
+              "name": "massage",
+              "value": "=Thankyou {{ $json.body.Nama }} dan juga {{ $json.body.Pesan }} {{ $json.body.Nama }}",
+              "type": "string"
+            }
+          ]
+        },
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.5,
+      "position": [
+        32,
+        -128
+      ],
+      "id": "23a5b702-713d-4d8a-b58a-ddebebc0370a",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.5,
+      "position": [
+        192,
+        -128
+      ],
+      "id": "07ce6f37-c982-43a7-b5b1-956a11c497ef",
+      "name": "Respond to Webhook"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "ca822550-17e8-45ff-b8ff-3369fc7474ab",
+  "meta": {
+    "instanceId": "52c07271797fdab699ceeed7454c1cd7f87f85f79a8465393035d57218b27d3d"
+  },
+  "nodeGroups": [],
+  "id": "If1p0RASRAGhaM3b",
+  "tags": []
+}
